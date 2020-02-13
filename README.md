@@ -7,5 +7,9 @@ Het is een CKAN instantie die opgebouwd is met deze uitbreidingen:
 * https://github.com/pduchesne/ckan/tree/2.7-ODVL
 De hoofdontwikkelaar is Philippe Duchesne.
 
+The implementatie van de geonetwerk harvesting plugin is the vinden op
+* https://github.com/metadata101/dcat-ap1.1
+De hoofdontwikkelaar is Stijn Goedertier
+
 
 Deze repository laat toe om (technische) vragen te stellen over het VODAP, toepassing van DCAT-AP VL e.d.
