@@ -11,5 +11,8 @@ The implementatie van de geonetwerk harvesting plugin is the vinden op
 * https://github.com/metadata101/dcat-ap1.1
 De hoofdontwikkelaar is Stijn Goedertier
 
+De implementatie van de VODAP DCAT-AP validator is the vinden op
+* https://github.com/tenforce/vodap-dcatap-validation
+De hoofdontwikkelaar is Bert Van Nuffelen
 
 Deze repository laat toe om (technische) vragen te stellen over het VODAP, toepassing van DCAT-AP VL e.d.
