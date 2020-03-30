@@ -58,7 +58,7 @@ workflows:
   version: 2
   generate_documentation:
     jobs:
-      - extract-vodap
+      - extract-catalog
       - create-artifact:
           requires:
             - extract-catalog
