@@ -61,4 +61,4 @@ workflows:
       - extract-vodap
       - create-artifact:
           requires:
-            - extract-codelists
+            - extract-catalog
