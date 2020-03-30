@@ -1,0 +1,64 @@
+version: 2
+jobs:
+  extract-catalog:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: mkdir -p workspace/target
+      - run:
+          name: download-vodap
+          command: |
+            /scripts/download.sh https://opendata.vlaanderen.be/catalog.rdf?validation_mode=true /tmp/workspace/target/vodap.nt
+            gzip /tmp/workspace/target/vodap.nt
+      - run:
+          name: List the files which have been created
+          command: ls -al /tmp/workspace/*
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - target/
+  create-artifact:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace
+      - add_ssh_keys:
+          fingerprints:
+            - "cb:25:97:b6:bd:cd:4d:ac:8c:c6:63:9b:b9:d7:75:46"
+      - run:
+          name: Checkout target repo
+          workdir: /tmp
+          command: |
+            rm -rf codelist-generated
+            git clone git@github.com:Informatievlaanderen/vodap.git
+      - run:
+          name: Switch to the target directory
+          workdir: /tmp/OSLO-codelistgenerated
+          command: |
+            git fetch origin
+            git checkout -b "vodap-${CIRCLE_BRANCH}" --track "origin/vodap-${CIRCLE_BRANCH}"
+      - run:
+          name: Copy assets
+          workdir: /tmp/workspace
+          command: |
+            cp -R target/vodap.nt.gz /tmp/OSLO-codelistgenerated/
+      - run:
+          name: Push results to github
+          workdir: /tmp/OSLO-codelistgenerated
+          command: |
+            git config user.email "circleci@data.vlaanderen.be"
+            git config user.name "Circle CI Builder"
+            git add .
+            git commit -m "Applying changes from commit ${CIRCLE_SHA1}" --allow-empty
+            git push origin "vodap-${CIRCLE_BRANCH}"
+workflows:
+  version: 2
+  generate_documentation:
+    jobs:
+      - extract-vodap
+      - create-artifact:
+          requires:
+            - extract-codelists
