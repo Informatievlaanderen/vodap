@@ -5,11 +5,12 @@ jobs:
       - image: circleci/node
     steps:
       - checkout
-      - run: mkdir -p workspace/target
+      - run: sudo apt-get install -y raptor2-utils
+      - run: mkdir -p /tmp/workspace/target
       - run:
           name: download-vodap
           command: |
-            /scripts/download.sh https://opendata.vlaanderen.be/catalog.rdf?validation_mode=true /tmp/workspace/target/vodap.nt
+            ~/project/scripts/download.sh https://opendata.vlaanderen.be/catalog.rdf?validation_mode=true /tmp/workspace/target/vodap.nt
             gzip /tmp/workspace/target/vodap.nt
       - run:
           name: List the files which have been created
