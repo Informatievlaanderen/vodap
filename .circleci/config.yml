@@ -13,7 +13,7 @@ jobs:
             ~/project/scripts/download.sh https://opendata.vlaanderen.be/catalog.rdf?validation_mode=true /tmp/workspace/target/vodap.nt
       - run:
           name: cleanup all non-parseable triples
-          command: if rapper -i ntriples vodap.nt > cleaned.nt ; then echo "no error found" ; else echo "ERRORS FOUND" ; fi 
+          command: if rapper -i ntriples /tmp/workspace/target/vodap.nt > /tmp/workspace/target/cleaned.nt ; then echo "no error found" ; else echo "ERRORS FOUND" ; fi 
       - run:
           name: gzip all files
           command: gzip /tmp/workspace/target/*
