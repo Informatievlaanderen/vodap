@@ -11,7 +11,12 @@ jobs:
           name: download-vodap
           command: |
             ~/project/scripts/download.sh https://opendata.vlaanderen.be/catalog.rdf?validation_mode=true /tmp/workspace/target/vodap.nt
-            gzip /tmp/workspace/target/vodap.nt
+      - run:
+          name: cleanup all non-parseable triples
+          command: rapper -i ntriples /tmp/workspace/target/vodap.nt > /tmp/workspace/target/cleaned-vodap.nt
+      - run:
+          name: gzip all files
+          command: gzip /tmp/workspace/target/*
       - run:
           name: List the files which have been created
           command: ls -al /tmp/workspace/*
@@ -33,11 +38,11 @@ jobs:
           name: Checkout target repo
           workdir: /tmp
           command: |
-            rm -rf codelist-generated
-            git clone git@github.com:Informatievlaanderen/vodap.git
+            rm -rf generated
+            git clone git@github.com:Informatievlaanderen/vodap.git generated
       - run:
           name: Switch to the target directory
-          workdir: /tmp/OSLO-codelistgenerated
+          workdir: /tmp/generated
           command: |
             git fetch origin
             git checkout -b "vodap-${CIRCLE_BRANCH}" --track "origin/vodap-${CIRCLE_BRANCH}"
@@ -45,10 +50,10 @@ jobs:
           name: Copy assets
           workdir: /tmp/workspace
           command: |
-            cp -R target/vodap.nt.gz /tmp/OSLO-codelistgenerated/
+            cp -R target/vodap.nt.gz /tmp/generated/
       - run:
           name: Push results to github
-          workdir: /tmp/OSLO-codelistgenerated
+          workdir: /tmp/generated
           command: |
             git config user.email "circleci@data.vlaanderen.be"
             git config user.name "Circle CI Builder"
