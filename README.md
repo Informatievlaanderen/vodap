@@ -5,6 +5,7 @@ De verantwoordelijken zijn Mathias De Schrijver (mathias.deschrijver@kb.vlaander
 Het is een CKAN instantie die opgebouwd is met deze uitbreidingen:
 * https://bitbucket.org/highlatitudes/ckanext-odvl
 * https://github.com/pduchesne/ckan/tree/2.7-ODVL
+* the starting point for the DCAT RDF serialisation is found here: https://github.com/pduchesne/ckanext-dcat/blob/2.7-ODVL/ckanext/dcat/logic.py#L34-L50
 De hoofdontwikkelaar is Philippe Duchesne.
 
 The implementatie van de geonetwerk harvesting plugin is the vinden op
