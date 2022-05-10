@@ -10,7 +10,7 @@ jobs:
       - run:
           name: download-vodap
           command: |
-            ~/project/scripts/download.sh https://metadata.vlaanderen.be/srv/api/records?hitsPerPage=100&isOpenData=y&from=1 /tmp/workspace/target/vodap.nt
+            ~/project/scripts/download.sh "https://metadata.vlaanderen.be/srv/api/records?hitsPerPage=100&isOpenData=y&from=1" /tmp/workspace/target/vodap.nt
       - run:
           name: cleanup all non-parseable triples
           command: if rapper -i ntriples /tmp/workspace/target/vodap.nt > /tmp/workspace/target/cleaned.nt ; then echo "no error found" ; else echo "ERRORS FOUND" ; fi 

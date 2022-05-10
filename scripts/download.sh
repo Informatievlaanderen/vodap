@@ -8,6 +8,11 @@ URL=$1
 FORMAT="application/rdf+xml"
 TARGET=$2
 
+# ensure target directory exists
+DIR=$(dirname ${TARGET})
+mkdir -p ${DIR}
+
+
 #####################################
 # process link headers
 #####################################
