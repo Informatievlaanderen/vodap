@@ -23,7 +23,7 @@ LAST=$2
 
 
 while [ "${NEXT}" != "${LAST}" ] ; do
-    curl -D headers -o payload -k -L "${NEXT}"
+    curl --retry 5 -D headers -o payload -k -L "${NEXT}"
     rapper -i guess payload >> ${TARGET}
     NEXT=`grep next headers |sed "s/^.*<//"  |sed "s/>.*$//" `
     LAST=`grep last headers |sed "s/^.*<//"  |sed "s/>.*$//" `
