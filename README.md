@@ -1,6 +1,6 @@
 VODAP (http://opendata.vlaanderen.be/) is het Vlaams Open Data Portaal.   
   
- 
+   
 De verantwoordelijken zijn Mathias De Schrijver (mathias.deschrijver@vlaanderen.be) 
 
 Het is een CKAN instantie die opgebouwd is met deze uitbreidingen:
