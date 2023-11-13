@@ -18,4 +18,4 @@ De implementatie van de VODAP DCAT-AP validator is the vinden op
 De hoofdontwikkelaar is Bert Van Nuffelen
 
 Deze repository laat toe om (technische) vragen te stellen over het VODAP, toepassing van DCAT-AP VL e.d.   
- 
+  
