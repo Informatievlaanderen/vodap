@@ -54,8 +54,8 @@ jobs:
           name: Copy assets
           workdir: /tmp/workspace
           command: |
-            cp -R target/vodap.nt.gz /tmp/generated/
-            cp -R target/cleaned.nt.gz /tmp/generated/
+            cp -R target/vodap.*.gz /tmp/generated/
+            cp -R target/cleaned.*.gz /tmp/generated/
       - run:
           name: Push results to github
           workdir: /tmp/generated
