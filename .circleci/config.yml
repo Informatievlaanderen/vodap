@@ -14,7 +14,7 @@ jobs:
       - run:
           name: download-vodap
           command: |
-            ~/project/scripts/download_turtle.sh "https://beta.metadata.vlaanderen.be/srv/api/records?hitsPerPage=50&from=1&to=50" /tmp/workspace/target/vodap.ttl
+            ~/project/scripts/download_turtle.sh "https://metadata.vlaanderen.be/api/collections/main/items/?f=dcat_ap_vl" /tmp/workspace/target/vodap.ttl
       - run:
           name: cleanup all non-parseable triples
           command: if rapper -i turtle /tmp/workspace/target/vodap.ttl > /tmp/workspace/target/cleaned.nt ; then echo "no error found" ; else echo "ERRORS FOUND" ; fi 
